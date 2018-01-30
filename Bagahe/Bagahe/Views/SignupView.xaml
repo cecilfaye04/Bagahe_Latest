@@ -1,0 +1,98 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Bagahe.Views.SignupView"
+             Title="Sign up">
+  <ContentPage.Padding>
+    <OnPlatform x:TypeArguments="Thickness"
+                iOS="20, 40, 20, 20"
+                Android="20, 20, 20, 20"
+                WinPhone="20, 20, 20, 20" />
+  </ContentPage.Padding>
+  <ContentPage.Resources>
+    <ResourceDictionary>
+      
+      <Style x:Key="buttonProperty" TargetType="Button">
+        <Setter Property="BackgroundColor" Value="#2196f3"/>
+        <Setter Property="BorderRadius" Value="4"/>
+        <Setter Property="TextColor" Value="Black" />
+      </Style>
+      <Style x:Key="signUpErrorMsg" TargetType="Label">
+        <Setter Property="TextColor" Value="Red" />
+        <Setter Property="HorizontalTextAlignment" Value="Center"/>
+        <Setter Property="VerticalTextAlignment" Value="Center"/>
+      </Style>
+      <Style x:Key="errorMsg" TargetType="Label">
+        <Setter Property="TextColor" Value="Red"/>
+        <Setter Property="FontSize" Value="Micro"/>
+      </Style>
+    </ResourceDictionary>
+  </ContentPage.Resources>
+  <ContentPage.Content>
+    <ScrollView>
+      <StackLayout VerticalOptions="FillAndExpand"
+                  HorizontalOptions="FillAndExpand"
+                  Orientation="Vertical"
+                  Spacing="4">
+      <Image Source="bag_logov1.png" HeightRequest="150"/>
+      <Label Text="{Binding SignUpGeneralErrorMsg}"
+              Style="{StaticResource signUpErrorMsg}"/>
+      <Grid>
+        <Grid.RowDefinitions>
+          <RowDefinition Height="*"/>
+          <RowDefinition Height="2*"/>
+          <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+          <ColumnDefinition Width="*"/>
+          <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Label x:Name="FirstNameLabel"
+                Text="First Name"
+                Grid.Row="0"
+                Grid.Column="0"/>
+        <Label Text="Last Name"
+                Grid.Row="0"
+                Grid.Column="1"/>
+        <Entry Text="{Binding SignupFields.FirstName}"
+                Grid.Row="1"
+                Grid.Column="0"/>
+        <Entry Text="{Binding SignupFields.LastName}"
+                Grid.Row="1"
+                Grid.Column="1"/>
+        <Label Text="{Binding SignupErrMsg.FirstNameErrMsg}"
+                Grid.Row="2"
+                Grid.Column="0"
+                Style="{StaticResource errorMsg}"/>
+        <Label Text="{Binding SignupErrMsg.LastNameErrMsg}"
+                Grid.Row="2"
+                Grid.Column="1"
+                Style="{StaticResource errorMsg}"/>
+      </Grid>
+      <Label Text="Username:"/>
+      <Entry Text="{Binding SignupFields.Username}"/>
+      <Label Text="{Binding SignupErrMsg.UsernameErrMsg}"
+              Style="{StaticResource errorMsg}"/>
+      <Label Text="Password"/>
+      <Label Text="Password must be 8 characters long and contains at least one number, one lowercase letter and one uppercase letter."
+              FontSize="Micro"/>
+      <Entry Text="{Binding SignupFields.Password}"
+              IsPassword="True" />
+      <Label Text="{Binding SignupErrMsg.PasswordErrMsg}"
+              Style="{StaticResource errorMsg}"/>
+      <Label Text="Re-enter Password:"/>
+      <Entry Text="{Binding SignupFields.RePassword}"
+              IsPassword="True" />
+      <Label Text="{Binding SignupErrMsg.RePasswordErrMsg}"
+              Style="{StaticResource errorMsg}"/>
+      <Label Text="Email Address"/>
+      <Entry Text="{Binding SignupFields.Email}"/>
+      <Label Text="{Binding SignupErrMsg.EmailErrMsg}"
+              Style="{StaticResource errorMsg}"/>
+      <Button Text="Sign Up"
+              Style="{StaticResource buttonProperty}"
+              Command ="{Binding SignUpCommand}"/>
+      </StackLayout>  
+    </ScrollView>
+  </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Bagahe.Views.TrackBaggagesView">
+  <ContentPage.Resources>
+    <ResourceDictionary>
+      <Style x:Key="errorMessageText" TargetType="Label">
+        <Setter Property="TextColor" Value="Red" />
+      </Style>
+      <Style x:Key="inputErrorMsg" TargetType="Label">
+        <Setter Property="TextColor" Value="Red" />
+        <Setter Property="HorizontalTextAlignment" Value="Center"/>
+        <Setter Property="VerticalTextAlignment" Value="Center"/>
+      </Style>
+      <Style x:Key="buttonProperty" TargetType="Button">
+        <Setter Property="BackgroundColor" Value="#2196f3"/>
+        <Setter Property="BorderRadius" Value="4"/>
+        <Setter Property="TextColor" Value="Black" />
+      </Style>
+    </ResourceDictionary>
+  </ContentPage.Resources>
+  <ContentPage.Padding>
+    <OnPlatform x:TypeArguments="Thickness"
+                iOS="20, 40, 20, 20"
+                Android="20, 20, 20, 20"
+                WinPhone="20, 20, 20, 20" />
+  </ContentPage.Padding>
+  <ContentPage.Content>
+    <StackLayout VerticalOptions="FillAndExpand"
+                  HorizontalOptions="FillAndExpand"
+                  Orientation="Vertical"
+                  Spacing="4">
+      <ContentView Padding="20">
+        <Image Source="bag_logov1.png" HeightRequest="100"/>
+      </ContentView>
+      <Label Text="{Binding InputErrorMsg}"
+              Style="{StaticResource inputErrorMsg}"/>
+      <Label Text="PNR # :"/>
+      <Entry Text="{Binding PNR}" />
+      <Label Text="Last Name : "/>
+      <Entry Text="{Binding LastName}" />
+      <Label Text="Bagtag # :"/>
+      <Entry Text="{Binding Bagtag}" />
+      <Button Text="Track"
+               Style="{StaticResource buttonProperty}"
+               Command ="{Binding TrackResultCommand}"/>
+    </StackLayout>
+  </ContentPage.Content>
+</ContentPage>

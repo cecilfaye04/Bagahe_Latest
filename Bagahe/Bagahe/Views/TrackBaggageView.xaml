@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Bagahe.Views.TrackBaggageView"
+             Title="Baggage Tracker">
+  <ContentPage.Padding>
+
+  </ContentPage.Padding>
+  <ContentPage.Resources>
+    <ResourceDictionary>
+
+    </ResourceDictionary>
+  </ContentPage.Resources>
+  <ContentPage.Content>
+    <Grid>
+      <Grid.RowDefinitions>
+        <RowDefinition Height="Auto" />
+        <RowDefinition Height="Auto" />
+        <RowDefinition Height="Auto" />
+      </Grid.RowDefinitions>
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="Auto" />
+      </Grid.ColumnDefinitions>
+
+      <RelativeLayout Grid.Row="0" Grid.Column="0" >
+        <Entry x:Name="bagTagNumberEntry"
+             Placeholder="Bag Tag #"
+             Text="{Binding BagTagNumber, Mode=TwoWay}"
+             RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent,
+               Property=Width,Factor=1,Constant=0}" />
+        <Button Text="Scan" Command ="{Binding ScanBagTagCommand}"
+                RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToView,
+                  ElementName=bagTagNumberEntry,Property=Y,Factor=1,Constant=0}"
+                RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToView,
+                  ElementName=bagTagNumberEntry,Property=Width,Factor=0.8,Constant=-5}"
+                RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToView,
+                  ElementName=bagTagNumberEntry,Property=Width,Factor=.20,Constant=0}"
+                RelativeLayout.HeightConstraint ="{ConstraintExpression Type=RelativeToView,
+                  ElementName=bagTagNumberEntry,Property=Height,Factor=1,Constant=0}" />
+      </RelativeLayout>
+      <Entry Grid.Row="1" Grid.Column="0"
+             Placeholder="Passenger Last Name"
+             Text="{Binding PassengerName}" />
+      <Button Grid.Row="2" Grid.Column="0"
+              Text="Track" Command ="{Binding TrackBagCommand}"/>
+      <ActivityIndicator Color="Red" IsRunning="{Binding IsBusy, Mode=TwoWay}"/>
+    </Grid>
+
+  </ContentPage.Content>
+</ContentPage>
